@@ -2,8 +2,8 @@
 
 @section('main')
   <article>
-    <h2>{{ $post['tittle'] }}</h1>
-    <p>{{ $post['body'] }}</p>
+    <h2>{{ $post->title }}</h1>
+    {!! $post->body !!}
   </article>
   
   <a href="/post">back to the blog</a>
