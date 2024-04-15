@@ -5,6 +5,8 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
 
 
 Route::get('/', function () {
@@ -27,20 +29,8 @@ Route::get('/about', function () {
 Route::get('/post', [PostController::class, 'index']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
-Route::get('/category/{category:slug}', function (Category $category) {
-  return view('category', [
-      'tittle' => 'Category ' . $category->name,
-      'title' => $category->name,
-      'posts' => $category->posts,
-      'category' => $category->name
-    ]);
-});
+Route::get('/category/{category:slug}', [CategoryController::class, 'show']);
+Route::get('/categories', [CategoryController::class, 'index']);
 
-Route::get('/author/{author:username}', function (User $author) {
-  return view('blog', [
-    'title' => 'Author Post',
-    'tittle' => 'Author Post',
-    'posts' => $author->posts
-    ]);
-});
+Route::get('/author/{author:username}', [UserController::class, 'show']);
 ?>
