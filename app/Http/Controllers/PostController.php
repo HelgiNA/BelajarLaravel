@@ -4,16 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-
+use App\Models\Category;
+use App\Models\User;
 
 class PostController extends Controller
 {
     public function index()
     {
+      $title = '';
+      
+      if (request('category')) {
+        $category = Category::firstWhere('slug', request('category'));
+        $title = ' In. ' . $category->name;
+      }
+      
+      if (request('author')) {
+        $user = User::firstWhere('username', request('author'));
+        $title = ' By. ' . $user->name;
+      }
+      
       return view('blog', [
-        'title' => 'All Posts',
+        'title' => 'All Posts' . $title,
         'active' => 'posts',
-        'posts' => Post::latest('created_at')->get()
+        'posts' => Post::latest()->filter(request(['search', 'category', 'author']))->get()
       ]);
     }
     

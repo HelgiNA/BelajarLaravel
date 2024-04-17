@@ -26,11 +26,13 @@ Route::get('/about', function () {
     ]);
 });
 
-Route::get('/post', [PostController::class, 'index']);
-Route::get('/posts/{post:slug}', [PostController::class, 'show']);
+Route::get('/posts', [PostController::class, 'index']);
+Route::get('/post/{post:slug}', [PostController::class, 'show']);
 
-Route::get('/category/{category:slug}', [CategoryController::class, 'show']);
-Route::get('/categories', [CategoryController::class, 'index']);
-
-Route::get('/author/{author:username}', [UserController::class, 'show']);
-?>
+Route::get('/categories', fn ()
+  => view('categories', [
+        'title' => 'Post Categories',
+        'active' => 'categories',
+        'categories' => Category::latest('created_at')->get()
+  ])
+);

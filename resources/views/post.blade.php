@@ -7,7 +7,7 @@
       <h2>{{ $post->title }}</h2>
       
       <p>
-        by. <a href="#" class="text-decoration-none">{{ $post->author->name }}</a> in <a href="/category/{{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a>
+        by. <a href="/posts?author={{ $post->author->username }}" class="text-decoration-none">{{ $post->author->name }}</a> in <a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a>
       </p>
        
       <img src="https://picsum.photos/1200/400" class="img-fluid" alt="...">
@@ -16,7 +16,7 @@
         {!! $post->body !!}
       </article>
       
-      <a href="/post/" class="btn btn-primary">Back To The Blog</a>
+      <a href="/posts/" class="btn btn-primary">Back To The Blog</a>
     </div>
   </div>
 </div>
