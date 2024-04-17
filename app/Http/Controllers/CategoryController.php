@@ -21,7 +21,7 @@ class CategoryController extends Controller
       return view('blog', [
         'title' => 'Posts with category ' . $category->name,
         'active' => 'posts',
-        'posts' => $category->posts
+        'posts' => $category->posts->load('author','category')
       ]);
     }
 }

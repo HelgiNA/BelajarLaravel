@@ -17,7 +17,7 @@ class UserController extends Controller
       return view('blog', [
       'title' => 'Posted By. Author' . $author->name,
       'active' => 'posts',
-      'posts' => $author->posts
+      'posts' => $author->posts->load('author','category')
       ]);
     }
 }
