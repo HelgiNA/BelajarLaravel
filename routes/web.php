@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Post;
+
 use App\Models\Category;
-use App\Models\User;
+
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 
 Route::get('/', function () {
@@ -15,13 +15,15 @@ Route::get('/', function () {
 
 Route::get('/home', function () {
     return view('home', [
-      'tittle' => 'home'
+      'title' => 'home',
+      'active' => 'home'
     ]);
 });
 
 Route::get('/about', function () {
     return view('about', [
-      'tittle' => 'about',
+      'title' => 'about',
+      'active' => 'about',
       'name' => 'hans'
     ]);
 });
@@ -36,3 +38,6 @@ Route::get('/categories', fn ()
         'categories' => Category::latest('created_at')->get()
   ])
 );
+Route::get('/login', [LoginController::class, 'index']);
+
+Route::get('/register', [RegisterController::class, 'index']);
