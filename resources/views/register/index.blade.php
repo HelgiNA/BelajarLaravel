@@ -12,9 +12,9 @@
           <input type="text" class="form-control rounded-top @error('name') is-invalid @enderror" id="floatingInput" placeholder="Lorem" name="name" required value="{{ old('name') }}">
           <label for="name">Name</label>
           @error('name')
-          <div class="invalid-feedback">
-            {{ $message }}
-          </div>
+            <div class="invalid-feedback">
+              {{ $message }}
+            </div>
           @enderror
         </div>
         
